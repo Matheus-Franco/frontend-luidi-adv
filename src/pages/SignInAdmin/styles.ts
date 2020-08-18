@@ -14,7 +14,7 @@ export const Container = styled.div`
     font-weight: 600;
   }
 
-  input {
+  div {
     width: 300px;
     height: 35px;
     border-radius: 5px;
@@ -23,7 +23,6 @@ export const Container = styled.div`
     margin: 25px 0px 15px 0px;
     padding: 0px 10px;
 
-    color: #000;
     font-size: 16px;
   }
 
