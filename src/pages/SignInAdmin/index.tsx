@@ -8,7 +8,7 @@ import api from '../../services/api';
 
 import { Container } from './styles';
 
-interface Test {
+interface AuthFormData {
   key_access: string;
 }
 
@@ -17,7 +17,7 @@ const SignInAdmin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(
-    async ({ key_access }: Test) => {
+    async ({ key_access }: AuthFormData) => {
       try {
         await api.post('/admin/authenticate-lawyer', {
           key_access,
