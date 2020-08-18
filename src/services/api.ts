@@ -1,4 +1,5 @@
-import axios from 'axios';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { default: axios } = require('axios');
 
 const api = axios.create({
   baseURL: 'http://localhost:3333',

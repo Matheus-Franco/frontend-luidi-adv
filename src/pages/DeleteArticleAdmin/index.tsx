@@ -4,16 +4,28 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
+import api from '../../services/api';
 
 import { Container } from './styles';
+
+interface FormData {
+  article_id: string;
+}
 
 const SignInAdmin: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(() => {
-    history.push('/create-articles');
-  }, [history]);
+  const handleSubmit = useCallback(
+    async ({ article_id }: FormData) => {
+      await api.delete('/admin/del-article', {
+        article_id,
+      });
+
+      history.push('/create-articles');
+    },
+    [history],
+  );
 
   return (
     <Container>
