@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
-import api from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 import { Container } from './styles';
 
@@ -15,20 +15,19 @@ interface AuthFormData {
 const SignInAdmin: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
+  const { authorization } = useAuth();
 
   const handleSubmit = useCallback(
     async ({ key_access }: AuthFormData) => {
       try {
-        await api.post('/admin/authenticate-lawyer', {
-          key_access,
-        });
+        await authorization({ key_access });
 
         history.push('/create-articles');
       } catch (err) {
         console.log('ERRO!');
       }
     },
-    [history],
+    [history, authorization],
   );
 
   return (
