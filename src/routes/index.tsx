@@ -9,10 +9,10 @@ import Main from '../pages/Main';
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/admin" component={SignInAdmin} />
-      <Route path="/admin-dashboard" component={AdminDashboard} />
-
       <Route path="/" exact component={Main} />
+
+      <Route path="/admin-auth" component={SignInAdmin} />
+      <Route path="/admin-dashboard" component={AdminDashboard} />
     </Switch>
   );
 };

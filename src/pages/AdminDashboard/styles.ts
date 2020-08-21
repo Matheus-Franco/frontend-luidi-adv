@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,21 +6,22 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   > div {
     background: #fafafa;
-    width: 700px;
-    height: 400px;
+    width: 900px;
+    height: 500px;
     border-radius: 15px;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
 
     button {
-      background: #6f9fd7;
+      background: #393d3f;
       height: 60%;
       width: 30%;
       margin: 24px;
@@ -36,8 +36,13 @@ export const Container = styled.div`
       transition: 0.3s;
 
       &:hover {
-        background: ${shade(0.2, '#6F9FD7')};
+        background: #fafafa;
         margin-top: 5px;
+        border: 3px solid #3b3d42;
+
+        p {
+          color: #3b3d42;
+        }
       }
 
       p {

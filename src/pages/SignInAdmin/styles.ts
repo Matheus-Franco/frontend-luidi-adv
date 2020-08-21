@@ -11,7 +11,6 @@ export const Container = styled.div`
   h3 {
     color: #fff;
     font-weight: 600;
-
     margin-bottom: 50px;
   }
 
@@ -45,11 +44,12 @@ export const Container = styled.div`
   }
 
   button {
-    background: #6f9fd7;
+    background: #6ecf56;
     border-radius: 5px;
     color: #fff;
     font-weight: 600;
     font-size: 18px;
+    line-height: 18px;
     width: 80%;
     height: 55px;
     border-radius: 5px;
@@ -62,7 +62,7 @@ export const Container = styled.div`
     transition: 0.3s;
 
     &:hover {
-      background: ${shade(0.2, '#6F9FD7')};
+      background: ${shade(0.2, '#6ECF56')};
     }
   }
 `;
