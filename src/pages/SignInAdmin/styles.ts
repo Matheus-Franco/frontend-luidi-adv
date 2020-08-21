@@ -7,16 +7,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: #4b4d4e;
 
   h3 {
-    color: #fff;
+    color: #fafafa;
     font-weight: 600;
     margin-bottom: 50px;
   }
 
   form {
     > div {
-      background: #fafafa;
+      background: #393d3f;
       height: 300px;
       width: 500px;
 

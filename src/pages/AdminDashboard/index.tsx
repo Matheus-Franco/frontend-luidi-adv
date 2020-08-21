@@ -3,8 +3,11 @@ import React, { useState, useCallback } from 'react';
 import ModalAddArticle from '../../components/ModalAddArticle';
 import ModalRemoveArticle from '../../components/ModalRemoveArticle';
 
+import Header from '../../components/Header';
+
 import { Container } from './styles';
 
+/*
 interface IArticle {
   id: string;
   title: string;
@@ -12,6 +15,7 @@ interface IArticle {
   lawyer_name: string;
   image: string;
 }
+*/
 
 const AdminDashboard: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,6 +39,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Container>
         <div>
           <ModalAddArticle
