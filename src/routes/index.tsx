@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+import Route from './Route';
 
 import SignInAdmin from '../pages/SignInAdmin';
 import AdminDashboard from '../pages/AdminDashboard';
@@ -12,7 +14,7 @@ const Routes: React.FC = () => {
       <Route path="/" exact component={Main} />
 
       <Route path="/admin-auth" component={SignInAdmin} />
-      <Route path="/admin-dashboard" component={AdminDashboard} />
+      <Route path="/admin-dashboard" component={AdminDashboard} isPrivate />
     </Switch>
   );
 };
