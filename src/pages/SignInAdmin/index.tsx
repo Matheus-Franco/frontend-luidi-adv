@@ -4,21 +4,32 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
-// import api from '../../services/api';
+
+import { useAuth } from '../../hooks/auth';
 
 import { Container } from './styles';
 
 interface AuthFormData {
-  key_access: string;
+  email: string;
+  password: string;
 }
 
 const SignInAdmin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
+  const { signIn } = useAuth();
 
-  const handleSubmit = useCallback(() => {
-    history.push('/admin-dashboard');
-  }, [history]);
+  const handleSubmit = useCallback(
+    async (data: AuthFormData) => {
+      await signIn({
+        email: data.email,
+        password: data.password,
+      });
+
+      history.push('/admin-dashboard');
+    },
+    [history, signIn],
+  );
 
   return (
     <Container>
