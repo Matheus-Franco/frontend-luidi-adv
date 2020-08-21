@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
-import { useAuth } from '../../hooks/auth';
+// import api from '../../services/api';
 
 import { Container } from './styles';
 
@@ -13,30 +13,24 @@ interface AuthFormData {
 }
 
 const SignInAdmin: React.FC = () => {
-  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
-  const { authorization } = useAuth();
+  const history = useHistory();
 
-  const handleSubmit = useCallback(
-    async ({ key_access }: AuthFormData) => {
-      try {
-        await authorization({ key_access });
-
-        history.push('/create-articles');
-      } catch (err) {
-        console.log('ERRO!');
-      }
-    },
-    [history, authorization],
-  );
+  const handleSubmit = useCallback(() => {
+    history.push('/admin-dashboard');
+  }, [history]);
 
   return (
     <Container>
       <h3>ATENÇÃO! ESSA É UMA PÁGINA DE ACESSO RESTRITO</h3>
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <Input name="key_access" placeholder="Key Access" type="password" />
-        <button type="submit">ENTRAR</button>
+        <div>
+          <Input name="email" placeholder="E-mail" />
+          <Input name="password" type="password" placeholder="Senha" />
+
+          <button type="submit">ENTRAR</button>
+        </div>
       </Form>
     </Container>
   );

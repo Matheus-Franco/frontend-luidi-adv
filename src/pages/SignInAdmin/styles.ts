@@ -6,36 +6,55 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   height: 100vh;
 
   h3 {
     color: #fff;
     font-weight: 600;
+
+    margin-bottom: 50px;
   }
 
-  div {
-    width: 300px;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    margin: 25px 0px 15px 0px;
-    padding: 0px 10px;
+  form {
+    > div {
+      background: #fafafa;
+      height: 300px;
+      width: 500px;
 
-    font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+
+      > div {
+        width: 80%;
+        height: 55px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        padding: 0px 10px;
+        font-size: 16px;
+        background: #c5c5c5;
+
+        & + div {
+          margin: 10px 0px;
+        }
+      }
+    }
   }
 
   button {
-    background: #c53030;
+    background: #6f9fd7;
     border-radius: 5px;
-    color: #000;
+    color: #fff;
     font-weight: 600;
-    width: 300px;
-    height: 35px;
-    outline: none;
-    padding: 10px;
+    font-size: 18px;
+    width: 80%;
+    height: 55px;
+    border-radius: 5px;
     border: none;
+    outline: none;
 
     display: flex;
     align-items: center;
@@ -43,7 +62,7 @@ export const Container = styled.div`
     transition: 0.3s;
 
     &:hover {
-      background: ${shade(0.2, '#c53030')};
+      background: ${shade(0.2, '#6F9FD7')};
     }
   }
 `;
