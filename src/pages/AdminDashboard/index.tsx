@@ -5,9 +5,10 @@ import ModalRemoveArticle from '../../components/ModalRemoveArticle';
 
 import Header from '../../components/Header';
 
+import api from '../../services/api';
+
 import { Container } from './styles';
 
-/*
 interface IArticle {
   id: string;
   title: string;
@@ -15,15 +16,20 @@ interface IArticle {
   lawyer_name: string;
   image: string;
 }
-*/
 
 const AdminDashboard: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [removeModalOpen, setRemoveModalOpen] = useState(false);
+  const [articles, setArticles] = useState<IArticle[]>([]);
 
-  const handleAddArticle = useCallback(() => {
-    console.log('handleAddArticle test');
-  }, []);
+  const handleAddArticle = useCallback(
+    async (article: Omit<IArticle, 'id'>) => {
+      const newArticle = await api.post('/admin/create-article', article);
+
+      setArticles([...articles, newArticle]);
+    },
+    [articles],
+  );
 
   const handleRemoveArticle = useCallback(() => {
     console.log('handleRemoveArticle test');
