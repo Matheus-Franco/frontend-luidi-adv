@@ -31,9 +31,20 @@ const AdminDashboard: React.FC = () => {
     [articles],
   );
 
-  const handleRemoveArticle = useCallback(() => {
-    console.log('handleRemoveArticle test');
-  }, []);
+  const handleRemoveArticle = useCallback(
+    async article_id => {
+      await api.delete('/admin/del-article', {
+        article_id,
+      });
+
+      const updatedListArticles = articles.filter(
+        article => article.id !== article_id,
+      );
+
+      setArticles(updatedListArticles);
+    },
+    [articles],
+  );
 
   function toggleModal(): void {
     setModalOpen(!modalOpen);
