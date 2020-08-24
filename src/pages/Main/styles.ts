@@ -58,7 +58,8 @@ export const Container = styled.div`
   }
 
   span {
-    button {
+    a {
+      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;

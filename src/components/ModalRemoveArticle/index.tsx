@@ -1,19 +1,21 @@
-import React, { useCallback, useRef } from 'react';
-import { FormHandles } from '@unform/core';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 import Modal from '../Modal';
-import Input from '../Input';
 
-import { Form } from './styles';
+import api from '../../services/api';
 
-interface IDeleteArticleProps {
-  article_id: string;
-}
+import { Container } from './styles';
 
 interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleRemoveArticle: (data: IDeleteArticleProps) => void;
+  handleRemoveArticle: (article_id: string) => void;
+}
+
+interface IArticle {
+  id: string;
+  title: string;
 }
 
 const ModalRemoveArticle: React.FC<IModalProps> = ({
@@ -24,11 +26,23 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
   // eslint-disable-next-line react/prop-types
   setIsOpen,
 }) => {
-  const formRef = useRef<FormHandles>(null);
+  const [articles, setArticles] = useState<IArticle[]>([]);
+
+  useEffect(() => {
+    async function loadArticles(): Promise<void> {
+      const response = await api.get('/articles/list');
+
+      const articlesList = response.data;
+
+      setArticles(articlesList);
+    }
+
+    loadArticles();
+  }, [articles]);
 
   const handleSubmit = useCallback(
-    async (data: IDeleteArticleProps) => {
-      await handleRemoveArticle(data);
+    async (article_id: string) => {
+      await handleRemoveArticle(article_id);
 
       setIsOpen();
     },
@@ -37,13 +51,18 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <h3>Remover Artigo</h3>
+      <Container>
+        {articles &&
+          articles.map(article => (
+            <div key={article.id}>
+              <p>{article.title}</p>
 
-        <Input name="article_id" placeholder="ID do Artigo" />
-
-        <button type="submit">Remover</button>
-      </Form>
+              <button type="button" onClick={() => handleSubmit(article.id)}>
+                <FaRegTrashAlt />
+              </button>
+            </div>
+          ))}
+      </Container>
     </Modal>
   );
 };

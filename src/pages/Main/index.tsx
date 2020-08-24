@@ -51,10 +51,10 @@ const Main: React.FC = () => {
       </header>
 
       <span>
-        <button type="button">
+        <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
           <FaWhatsapp size={28} />
           <p>WHATSAPP</p>
-        </button>
+        </a>
       </span>
 
       <AboutCompany>

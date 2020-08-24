@@ -1,45 +1,36 @@
 import styled from 'styled-components';
-import { Form as Unform } from '@unform/web';
 import { shade } from 'polished';
 
-export const Form = styled(Unform)`
-  padding: 48px 40px;
-  display: flex;
-  flex-direction: column;
+export const Container = styled.div`
+  max-height: 500px;
+  padding: 24px;
+  overflow: scroll;
 
-  > div {
-    height: 55px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    padding: 0px 10px;
-    font-size: 16px;
-    background: #c5c5c5;
-    margin-bottom: 18px;
-  }
-
-  h3 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 36px;
-    margin-bottom: 40px;
-    color: #393d3f;
-  }
-
-  button {
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
     background: #393d3f;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 18px;
-    height: 55px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    transition: 0.3s;
+    border-radius: 10px;
 
-    &:hover {
-      background: ${shade(0.2, '#393D3F')};
+    margin-bottom: 12px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      transition: 0.3s;
+      border: none;
+
+      svg {
+        color: #fff;
+
+        &:hover {
+          color: ${shade(0.3, '#fff')};
+        }
+      }
     }
   }
 `;
