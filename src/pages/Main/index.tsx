@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
-import {
-  FaWhatsapp,
-  FaRegCommentDots,
-  FaPencilAlt,
-  FaBalanceScale,
-} from 'react-icons/fa';
+import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
+import { TiDocumentText } from 'react-icons/ti';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -14,7 +12,29 @@ import {
   InterestingArticles,
 } from './styles';
 
+interface ArticleProps {
+  article_id: string;
+  title: string;
+  content: string;
+  lawyer_name: string;
+  image: string;
+}
+
 const Main: React.FC = () => {
+  const [articles, setArticles] = useState<ArticleProps[]>([]);
+
+  useEffect(() => {
+    async function loadArticles(): Promise<void> {
+      const response = await api.get('/articles/list');
+
+      const articlesList = response.data;
+
+      setArticles(articlesList);
+    }
+
+    loadArticles();
+  }, [articles]);
+
   return (
     <Container>
       <header>
@@ -63,70 +83,32 @@ const Main: React.FC = () => {
         </span>
       </AboutCompany>
 
-      <CompetenceArea>
+      {/*      <CompetenceArea>
         <span>
           <h3>Área de Competências</h3>
         </span>
+
+        <div />
       </CompetenceArea>
+      */}
 
       <InterestingArticles>
-        <span>
-          <h3>Artigos Interessantes</h3>
-        </span>
-
-        <div>
+        {articles && (
           <span>
-            <FaPencilAlt size={42} />
-            <p>Direito Tributário e as responsabilidades do advogado</p>
+            <h3>Artigos Interessantes</h3>
           </span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            consectetur a erat nam at. Faucibus ornare suspendisse sed nisi
-            lacus sed. Ultrices dui sapien eget mi proin. Suspendisse ultrices
-            gravida dictum fusce ut placerat orci nulla. Luctus accumsan tortor
-            posuere ac ut consequat. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. Egestas pretium aenean pharetra magna ac placerat
-            vestibulum. Odio eu feugiat pretium nibh ipsum. Consequat id porta
-            nibh venenatis cras sed felis eget velit.
-          </p>
-        </div>
+        )}
 
-        <div>
-          <span>
-            <FaPencilAlt size={42} />
-            <p>Direito Tributário e as responsabilidades do advogado</p>
-          </span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            consectetur a erat nam at. Faucibus ornare suspendisse sed nisi
-            lacus sed. Ultrices dui sapien eget mi proin. Suspendisse ultrices
-            gravida dictum fusce ut placerat orci nulla. Luctus accumsan tortor
-            posuere ac ut consequat. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. Egestas pretium aenean pharetra magna ac placerat
-            vestibulum. Odio eu feugiat pretium nibh ipsum. Consequat id porta
-            nibh venenatis cras sed felis eget velit.
-          </p>
-        </div>
-
-        <div>
-          <span>
-            <FaPencilAlt size={42} />
-            <p>Direito Tributário e as responsabilidades do advogado</p>
-          </span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            consectetur a erat nam at. Faucibus ornare suspendisse sed nisi
-            lacus sed. Ultrices dui sapien eget mi proin. Suspendisse ultrices
-            gravida dictum fusce ut placerat orci nulla. Luctus accumsan tortor
-            posuere ac ut consequat. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. Egestas pretium aenean pharetra magna ac placerat
-            vestibulum. Odio eu feugiat pretium nibh ipsum. Consequat id porta
-            nibh venenatis cras sed felis eget velit.
-          </p>
-        </div>
+        {articles &&
+          articles.map(article => (
+            <div key={article.article_id}>
+              <span>
+                <TiDocumentText size={42} />
+                <p>{article.title}</p>
+              </span>
+              <p>{article.content}</p>
+            </div>
+          ))}
       </InterestingArticles>
 
       <footer>

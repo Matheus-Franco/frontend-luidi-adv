@@ -115,7 +115,7 @@ export const AboutCompany = styled.div`
 
     svg {
       margin: 54px;
-      color: #5f72a2;
+      color: #8b9cb0;
     }
 
     p {
@@ -137,9 +137,22 @@ export const CompetenceArea = styled.div`
   > span {
     h3 {
       font-size: 36px;
-      color: #4c4b4b;
+      color: #8b9cb0;
       font-weight: 600;
     }
+  }
+
+  div {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    height: 400px;
+    width: 980px;
+    margin: 24px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+    padding: 36px;
+    cursor: pointer;
   }
 `;
 
@@ -150,40 +163,41 @@ export const InterestingArticles = styled.div`
   flex-direction: column;
 
   > span {
+    margin-top: 64px;
+
     h3 {
       font-size: 36px;
-      color: #4c4b4b;
+      color: #8b9cb0;
       font-weight: 600;
     }
   }
 
   div {
     background: #fff;
-    height: 400px;
     width: 980px;
-    margin: 54px;
+    margin: 24px;
     border-radius: 15px;
-    border: 2px solid #404371;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
     padding: 36px;
     cursor: pointer;
 
     span {
       display: flex;
       align-items: center;
-      color: #404371;
       margin-bottom: 24px;
 
       svg {
         margin-right: 24px;
+        color: #5f72a2;
       }
 
       p {
         font-size: 36px;
-        font-weight: 600;
-        color: #36456c;
+        color: #5f72a2;
 
         &:hover {
-          color: ${shade(0.3, '#36456c')};
+          color: ${shade(0.3, '#5f72a2')};
         }
       }
     }
