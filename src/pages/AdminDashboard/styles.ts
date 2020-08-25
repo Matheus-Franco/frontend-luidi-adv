@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   > div {
     background: #393d3f;
-    width: 900px;
+    width: 1200px;
     height: 500px;
     border-radius: 15px;
     display: flex;

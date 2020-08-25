@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  background: #f6f6f6;
-
   header {
     background: #5f72a2;
     height: 110px;
@@ -108,109 +106,57 @@ export const Container = styled.div`
   }
 `;
 
-export const AboutCompany = styled.div`
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    svg {
-      margin: 54px;
-      color: #8b9cb0;
-    }
-
-    p {
-      width: 1000px;
-      display: flex;
-      align-items: center;
-      color: #36456c;
-      margin-bottom: 64px;
-    }
-  }
-`;
-
-export const CompetenceArea = styled.div`
+export const Article = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
-  > span {
-    h3 {
-      font-size: 36px;
-      color: #8b9cb0;
-      font-weight: 600;
-    }
-  }
-
-  div {
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    background: #fff;
-    height: 400px;
+  > div {
+    background: #fafafa;
     width: 980px;
     margin: 24px;
     border-radius: 15px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
     padding: 36px;
-    cursor: pointer;
-  }
-`;
 
-export const InterestingArticles = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  > span {
-    margin-top: 64px;
-
-    h3 {
-      font-size: 36px;
-      color: #8b9cb0;
-      font-weight: 600;
-    }
-  }
-
-  div {
-    background: #fff;
-    width: 980px;
-    margin: 24px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
-    padding: 36px;
-    cursor: pointer;
-
-    span {
+    div {
       display: flex;
       align-items: center;
       margin-bottom: 24px;
 
       svg {
-        margin-right: 24px;
+        margin-right: 48px;
         color: #5f72a2;
       }
 
-      button {
-        background: transparent;
-        border: none;
-
-        p {
-          font-size: 36px;
-          color: #5f72a2;
-
-          &:hover {
-            color: ${shade(0.3, '#5f72a2')};
-          }
-        }
+      p {
+        font-size: 36px;
+        color: #5f72a2;
       }
     }
 
     p {
       color: #36456c;
+    }
+  }
+
+  span {
+    margin: 32px 0;
+    width: 980px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 88px;
+
+    > p {
+      font-weight: 600;
+      font-size: 24px;
+      color: #8b9cb0;
+    }
+
+    a {
+      margin: 0px 0px;
     }
   }
 `;

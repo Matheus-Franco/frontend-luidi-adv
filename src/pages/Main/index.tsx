@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -23,6 +24,8 @@ interface ArticleProps {
 const Main: React.FC = () => {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
 
+  const history = useHistory();
+
   useEffect(() => {
     async function loadArticles(): Promise<void> {
       const response = await api.get('/articles/list');
@@ -34,6 +37,13 @@ const Main: React.FC = () => {
 
     loadArticles();
   }, [articles]);
+
+  const handleNavigate = useCallback(
+    async (id: string) => {
+      history.push('/article', { id });
+    },
+    [history],
+  );
 
   return (
     <Container>
@@ -104,7 +114,12 @@ const Main: React.FC = () => {
             <div key={article.article_id}>
               <span>
                 <TiDocumentText size={42} />
-                <p>{article.title}</p>
+                <button
+                  onClick={() => handleNavigate(article.article_id)}
+                  type="button"
+                >
+                  <p>{article.title}</p>
+                </button>
               </span>
               <p>{article.content}</p>
             </div>
