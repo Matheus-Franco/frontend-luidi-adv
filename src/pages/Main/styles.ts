@@ -174,7 +174,7 @@ export const InterestingArticles = styled.div`
     }
   }
 
-  div {
+  > div {
     background: #fff;
     width: 980px;
     margin: 24px;
@@ -209,8 +209,28 @@ export const InterestingArticles = styled.div`
       }
     }
 
-    p {
-      color: #36456c;
+    > div {
+      height: 290px;
+      overflow: hidden;
+      opacity: 0.5;
+
+      p {
+        color: #36456c;
+      }
+    }
+
+    > button {
+      display: flex;
+      margin: 16px 0 0 750px;
+      color: #8b9cb0;
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      font-size: 18px;
+
+      &:hover {
+        color: ${shade(0.3, '#8b9cb0')};
+      }
     }
   }
 `;

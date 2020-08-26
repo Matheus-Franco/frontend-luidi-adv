@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
@@ -26,7 +26,6 @@ const Main: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    /*
     async function loadArticles(): Promise<void> {
       const response = await api.get('/articles/list');
 
@@ -36,10 +35,6 @@ const Main: React.FC = () => {
     }
 
     loadArticles();
-    */
-    api
-      .get('/articles/list')
-      .then((response: any) => setArticles(response.data));
   }, [articles]);
 
   async function handleNavigate(id: string): Promise<void> {
@@ -94,15 +89,15 @@ const Main: React.FC = () => {
         </span>
       </AboutCompany>
 
-      {/*      <CompetenceArea>
+      {/*
+      <CompetenceArea>
         <span>
           <h3>Área de Competências</h3>
         </span>
 
         <div />
       </CompetenceArea>
-      */}
-
+*/}
       <InterestingArticles>
         {articles && (
           <span>
@@ -122,7 +117,13 @@ const Main: React.FC = () => {
                   <p>{article.title}</p>
                 </button>
               </span>
-              <p>{article.content}</p>
+              <div>
+                <p>{article.content}</p>
+              </div>
+
+              <button type="button" onClick={() => handleNavigate(article.id)}>
+                Continuar Leitura
+              </button>
             </div>
           ))}
       </InterestingArticles>
