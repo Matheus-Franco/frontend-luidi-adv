@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { TiDocumentText } from 'react-icons/ti';
 import { FaWhatsapp, FaBalanceScale } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import { Container, Article } from './styles';
 
+interface IArticle {
+  id: string;
+  title: string;
+  content: string;
+  lawyer_name: string;
+}
+
 const ArticleDetails: React.FC = () => {
+  const { id } = useParams();
+
+  const [article, setArticle] = useState<IArticle>({} as IArticle);
+
+  useEffect(() => {
+    async function loadArticle(): Promise<void> {
+      const response = await api.get(`/articles/list/${id}`);
+
+      const articleSelected = response.data;
+
+      setArticle(articleSelected);
+    }
+
+    loadArticle();
+  }, [id]);
+
   return (
     <Container>
       <header>
@@ -28,77 +54,27 @@ const ArticleDetails: React.FC = () => {
         </a>
       </span>
 
-      <Article>
-        <div>
+      {article && (
+        <Article>
           <div>
-            <TiDocumentText size={48} />
+            <div>
+              <TiDocumentText size={48} />
 
-            <p>Titulo Titulo Titulo Titulo</p>
+              <p>{article.title}</p>
+            </div>
+            <p>{article.content}</p>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            consectetur a erat nam at. Faucibus ornare suspendisse sed nisi
-            lacus sed. Ultrices dui sapien eget mi proin. Suspendisse ultrices
-            gravida dictum fusce ut placerat orci nulla. Luctus accumsan tortor
-            posuere ac ut consequat. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. Egestas pretium aenean pharetra magna ac placerat
-            vestibulum. Odio eu feugiat pretium nibh ipsum. Consequat id porta
-            nibh venenatis cras sed felis eget velit. Augue lacus viverra vitae
-            congue eu consequat ac. Nunc faucibus a pellentesque sit amet
-            porttitor eget dolor. Et ligula ullamcorper malesuada proin libero
-            nunc. Aliquam etiam erat velit scelerisque in dictum non consectetur
-            a. Eu scelerisque felis imperdiet proin fermentum leo vel orci
-            porta. At augue eget arcu dictum varius duis at consectetur. Amet
-            cursus sit amet dictum sit amet justo. Faucibus turpis in eu mi
-            bibendum. Varius sit amet mattis vulputate enim nulla. Morbi
-            tincidunt ornare massa eget egestas. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Non consectetur a erat nam at.
-            Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien
-            eget mi proin. Suspendisse ultrices gravida dictum fusce ut placerat
-            orci nulla. Luctus accumsan tortor posuere ac ut consequat. Tellus
-            molestie nunc non blandit massa enim nec dui nunc. Egestas pretium
-            aenean pharetra magna ac placerat vestibulum. Odio eu feugiat
-            pretium nibh ipsum. Consequat id porta nibh venenatis cras sed felis
-            eget velit. Augue lacus viverra vitae congue eu consequat ac. Nunc
-            faucibus a pellentesque sit amet porttitor eget dolor. Et ligula
-            ullamcorper malesuada proin libero nunc. Aliquam etiam erat velit
-            scelerisque in dictum non consectetur a. Eu scelerisque felis
-            imperdiet proin fermentum leo vel orci porta. At augue eget arcu
-            dictum varius duis at consectetur. Amet cursus sit amet dictum sit
-            amet justo. Faucibus turpis in eu mi bibendum. Varius sit amet
-            mattis vulputate enim nulla. Morbi tincidunt ornare massa eget
-            egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Non consectetur a erat nam at. Faucibus ornare suspendisse sed nisi
-            lacus sed. Ultrices dui sapien eget mi proin. Suspendisse ultrices
-            gravida dictum fusce ut placerat orci nulla. Luctus accumsan tortor
-            posuere ac ut consequat. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. Egestas pretium aenean pharetra magna ac placerat
-            vestibulum. Odio eu feugiat pretium nibh ipsum. Consequat id porta
-            nibh venenatis cras sed felis eget velit. Augue lacus viverra vitae
-            congue eu consequat ac. Nunc faucibus a pellentesque sit amet
-            porttitor eget dolor. Et ligula ullamcorper malesuada proin libero
-            nunc. Aliquam etiam erat velit scelerisque in dictum non consectetur
-            a. Eu scelerisque felis imperdiet proin fermentum leo vel orci
-            porta. At augue eget arcu dictum varius duis at consectetur. Amet
-            cursus sit amet dictum sit amet justo. Faucibus turpis in eu mi
-            bibendum. Varius sit amet mattis vulputate enim nulla. Morbi
-            tincidunt ornare massa eget egestas.
-          </p>
-        </div>
 
-        <span>
-          <p>Matheus Franco</p>
+          <span>
+            <p>{article.lawyer_name}</p>
 
-          <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
-            <FaWhatsapp size={28} />
-            <p>WHATSAPP</p>
-          </a>
-        </span>
-      </Article>
-
+            <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
+              <FaWhatsapp size={28} />
+              <p>WHATSAPP</p>
+            </a>
+          </span>
+        </Article>
+      )}
       <footer>
         <span>
           <p>©2020 Wandekoeken ADV. </p>

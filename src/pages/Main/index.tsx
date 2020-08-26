@@ -14,11 +14,10 @@ import {
 } from './styles';
 
 interface ArticleProps {
-  article_id: string;
+  id: string;
   title: string;
   content: string;
   lawyer_name: string;
-  image: string;
 }
 
 const Main: React.FC = () => {
@@ -27,6 +26,7 @@ const Main: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
+    /*
     async function loadArticles(): Promise<void> {
       const response = await api.get('/articles/list');
 
@@ -36,14 +36,15 @@ const Main: React.FC = () => {
     }
 
     loadArticles();
+    */
+    api
+      .get('/articles/list')
+      .then((response: any) => setArticles(response.data));
   }, [articles]);
 
-  const handleNavigate = useCallback(
-    async (id: string) => {
-      history.push('/article', { id });
-    },
-    [history],
-  );
+  async function handleNavigate(id: string): Promise<void> {
+    history.push(`/article/${id}`);
+  }
 
   return (
     <Container>
@@ -111,11 +112,11 @@ const Main: React.FC = () => {
 
         {articles &&
           articles.map(article => (
-            <div key={article.article_id}>
+            <div key={article.id}>
               <span>
                 <TiDocumentText size={42} />
                 <button
-                  onClick={() => handleNavigate(article.article_id)}
+                  onClick={() => handleNavigate(article.id)}
                   type="button"
                 >
                   <p>{article.title}</p>
