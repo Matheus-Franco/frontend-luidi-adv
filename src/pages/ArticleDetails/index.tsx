@@ -39,6 +39,13 @@ const ArticleDetails: React.FC = () => {
           <button type="button">
             <FiMenu size={28} />
           </button>
+
+          <span>
+            <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
+              <FaWhatsapp size={28} />
+              <p>WHATSAPP</p>
+            </a>
+          </span>
         </div>
 
         <span>
@@ -46,13 +53,6 @@ const ArticleDetails: React.FC = () => {
           <p>ADVOCACIA</p>
         </span>
       </header>
-
-      <span>
-        <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
-          <FaWhatsapp size={28} />
-          <p>WHATSAPP</p>
-        </a>
-      </span>
 
       {article && (
         <Article>

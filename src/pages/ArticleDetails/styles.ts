@@ -14,28 +14,54 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-    }
 
-    button {
-      height: 50px;
-      width: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
+      button {
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
 
-      svg {
-        color: #f6f6f6;
+        svg {
+          color: #f6f6f6;
+          transition: 0.3s;
+
+          &:hover {
+            color: ${shade(0.3, '#fff')};
+          }
+        }
+      }
+
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #6ecf56;
+        color: #fff;
+        padding: 24px;
+        border: none;
+        border-radius: 10px;
+
+        margin: 12px 54px;
+        height: 64px;
+        width: 300px;
         transition: 0.3s;
 
         &:hover {
-          color: ${shade(0.3, '#fff')};
+          background: ${shade(0.3, '#6ecf56')};
+        }
+
+        p {
+          margin: 0 12px;
+          font-weight: 600;
         }
       }
     }
 
-    span {
+    > span {
       background: #4c4b4b;
       height: 182px;
       width: 305px;
@@ -51,34 +77,6 @@ export const Container = styled.div`
 
       p {
         font-size: 36px;
-        font-weight: 600;
-      }
-    }
-  }
-
-  span {
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #6ecf56;
-      color: #fff;
-      padding: 24px;
-      border: none;
-      border-radius: 10px;
-
-      margin: 12px 54px;
-      height: 64px;
-      width: 300px;
-      transition: 0.3s;
-
-      &:hover {
-        background: ${shade(0.3, '#6ecf56')};
-      }
-
-      p {
-        margin: 0 12px;
         font-weight: 600;
       }
     }
@@ -111,6 +109,7 @@ export const Article = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 72px;
 
   > div {
     background: #fafafa;
@@ -156,7 +155,29 @@ export const Article = styled.div`
     }
 
     a {
-      margin: 0px 0px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #6ecf56;
+      color: #fff;
+      padding: 24px;
+      border: none;
+      border-radius: 10px;
+
+      margin: 12px 54px;
+      height: 64px;
+      width: 300px;
+      transition: 0.3s;
+
+      &:hover {
+        background: ${shade(0.3, '#6ecf56')};
+      }
+
+      p {
+        margin: 0 12px;
+        font-weight: 600;
+      }
     }
   }
 `;

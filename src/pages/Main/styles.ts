@@ -16,28 +16,54 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-    }
 
-    button {
-      height: 50px;
-      width: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
+      button {
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
 
-      svg {
-        color: #f6f6f6;
+        svg {
+          color: #f6f6f6;
+          transition: 0.3s;
+
+          &:hover {
+            color: ${shade(0.3, '#fff')};
+          }
+        }
+      }
+
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #6ecf56;
+        color: #fff;
+        padding: 24px;
+        border: none;
+        border-radius: 10px;
+
+        margin: 12px 54px;
+        height: 64px;
+        width: 300px;
         transition: 0.3s;
 
         &:hover {
-          color: ${shade(0.3, '#fff')};
+          background: ${shade(0.3, '#6ecf56')};
+        }
+
+        p {
+          margin: 0 12px;
+          font-weight: 600;
         }
       }
     }
 
-    span {
+    > span {
       background: #4c4b4b;
       height: 182px;
       width: 305px;
@@ -53,34 +79,6 @@ export const Container = styled.div`
 
       p {
         font-size: 36px;
-        font-weight: 600;
-      }
-    }
-  }
-
-  span {
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #6ecf56;
-      color: #fff;
-      padding: 24px;
-      border: none;
-      border-radius: 10px;
-
-      margin: 12px 54px;
-      height: 64px;
-      width: 300px;
-      transition: 0.3s;
-
-      &:hover {
-        background: ${shade(0.3, '#6ecf56')};
-      }
-
-      p {
-        margin: 0 12px;
         font-weight: 600;
       }
     }
@@ -109,6 +107,8 @@ export const Container = styled.div`
 `;
 
 export const AboutCompany = styled.div`
+  background: #5f72a2;
+
   span {
     display: flex;
     align-items: center;
@@ -116,15 +116,15 @@ export const AboutCompany = styled.div`
     flex-direction: column;
 
     svg {
-      margin: 54px;
-      color: #8b9cb0;
+      margin: 48px 0 32px 0;
+      color: #fafafa;
     }
 
     p {
       width: 1000px;
       display: flex;
       align-items: center;
-      color: #36456c;
+      color: #fafafa;
       margin-bottom: 64px;
     }
   }
@@ -151,7 +151,6 @@ export const CompetenceArea = styled.div`
     width: 980px;
     margin: 24px;
     border-radius: 15px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
     padding: 36px;
     cursor: pointer;
