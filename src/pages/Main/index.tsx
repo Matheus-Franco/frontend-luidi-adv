@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
+import { useArticle } from '../../hooks/articles';
+
 import {
   Container,
   AboutCompany,
@@ -21,25 +23,11 @@ interface ArticleProps {
 }
 
 const Main: React.FC = () => {
-  const [articles, setArticles] = useState<ArticleProps[]>([]);
-
-  const history = useHistory();
+  const { getArticlesFromAPI, handleNavigateToDetail, articles } = useArticle();
 
   useEffect(() => {
-    async function loadArticles(): Promise<void> {
-      const response = await api.get('/articles/list');
-
-      const articlesList = response.data;
-
-      setArticles(articlesList);
-    }
-
-    loadArticles();
-  }, [articles]);
-
-  async function handleNavigate(id: string): Promise<void> {
-    history.push(`/article/${id}`);
-  }
+    getArticlesFromAPI();
+  }, []);
 
   return (
     <Container>
@@ -89,7 +77,6 @@ const Main: React.FC = () => {
         </span>
       </AboutCompany>
 
-      {/*
       <CompetenceArea>
         <span>
           <h3>Área de Competências</h3>
@@ -97,31 +84,32 @@ const Main: React.FC = () => {
 
         <div />
       </CompetenceArea>
-*/}
+
       <InterestingArticles>
-        {articles && (
-          <span>
-            <h3>Artigos Interessantes</h3>
-          </span>
-        )}
+        <span>
+          <h3>Artigos Interessantes</h3>
+        </span>
 
         {articles &&
           articles.map(article => (
-            <div key={article.id}>
+            <div key={article.article.id}>
               <span>
                 <TiDocumentText size={42} />
                 <button
-                  onClick={() => handleNavigate(article.id)}
+                  onClick={() => handleNavigateToDetail(article.article.id)}
                   type="button"
                 >
-                  <p>{article.title}</p>
+                  <p>{article.article.title}</p>
                 </button>
               </span>
               <div>
-                <p>{article.content}</p>
+                <p>{article.article.content}</p>
               </div>
 
-              <button type="button" onClick={() => handleNavigate(article.id)}>
+              <button
+                type="button"
+                onClick={() => handleNavigateToDetail(article.article.id)}
+              >
                 Continuar Leitura
               </button>
             </div>
