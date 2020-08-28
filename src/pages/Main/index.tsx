@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
-import { useHistory } from 'react-router-dom';
 
-import api from '../../services/api';
+import { useArticle } from '../../hooks/articles';
 
 import {
   Container,
@@ -13,33 +12,8 @@ import {
   InterestingArticles,
 } from './styles';
 
-interface ArticleProps {
-  id: string;
-  title: string;
-  content: string;
-  lawyer_name: string;
-}
-
 const Main: React.FC = () => {
-  const [articles, setArticles] = useState<ArticleProps[]>([]);
-
-  const history = useHistory();
-
-  useEffect(() => {
-    async function loadArticles(): Promise<void> {
-      const response = await api.get('/articles/list');
-
-      const articlesList = response.data;
-
-      setArticles(articlesList);
-    }
-
-    loadArticles();
-  }, [articles]);
-
-  async function handleNavigate(id: string): Promise<void> {
-    history.push(`/article/${id}`);
-  }
+  const { handleNavigateToDetail, articles } = useArticle();
 
   return (
     <Container>
@@ -89,7 +63,6 @@ const Main: React.FC = () => {
         </span>
       </AboutCompany>
 
-      {/*
       <CompetenceArea>
         <span>
           <h3>Área de Competências</h3>
@@ -97,13 +70,11 @@ const Main: React.FC = () => {
 
         <div />
       </CompetenceArea>
-*/}
+
       <InterestingArticles>
-        {articles && (
-          <span>
-            <h3>Artigos Interessantes</h3>
-          </span>
-        )}
+        <span>
+          <h3>Artigos Interessantes</h3>
+        </span>
 
         {articles &&
           articles.map(article => (
@@ -111,7 +82,7 @@ const Main: React.FC = () => {
               <span>
                 <TiDocumentText size={42} />
                 <button
-                  onClick={() => handleNavigate(article.id)}
+                  onClick={() => handleNavigateToDetail(article.id)}
                   type="button"
                 >
                   <p>{article.title}</p>
@@ -121,7 +92,10 @@ const Main: React.FC = () => {
                 <p>{article.content}</p>
               </div>
 
-              <button type="button" onClick={() => handleNavigate(article.id)}>
+              <button
+                type="button"
+                onClick={() => handleNavigateToDetail(article.id)}
+              >
                 Continuar Leitura
               </button>
             </div>
