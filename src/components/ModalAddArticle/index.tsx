@@ -11,14 +11,14 @@ interface IArticle {
   title: string;
   content: string;
   lawyer_name: string;
-  image: string;
+  phone_number: string;
 }
 
 interface ICreateArticleData {
   title: string;
   content: string;
   lawyer_name: string;
-  image: string;
+  phone_number: string;
 }
 
 interface IModalProps {
@@ -55,7 +55,7 @@ const ModalAddArticle: React.FC<IModalProps> = ({
         <Input name="content" placeholder="Conteúdo" />
         <Input name="lawyer_name" placeholder="Nome do Advogado" />
 
-        <Input name="image" placeholder="Link da Imagem" />
+        <Input name="phone_number" placeholder="Número do Advogado" />
 
         <button type="submit">Adicionar</button>
       </Form>

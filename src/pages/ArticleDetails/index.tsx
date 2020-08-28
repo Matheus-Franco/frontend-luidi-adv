@@ -13,6 +13,7 @@ interface IArticle {
   title: string;
   content: string;
   lawyer_name: string;
+  phone_number: string;
 }
 
 const ArticleDetails: React.FC = () => {
@@ -68,7 +69,9 @@ const ArticleDetails: React.FC = () => {
           <span>
             <p>{article.lawyer_name}</p>
 
-            <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
+            <a
+              href={`https://api.whatsapp.com/send?phone=${article.phone_number}&text=Ol%C3%A1%2C%20Boa%20Tarde!`}
+            >
               <FaWhatsapp size={28} />
               <p>WHATSAPP</p>
             </a>
