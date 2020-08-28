@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
-import { useHistory } from 'react-router-dom';
-
-import api from '../../services/api';
 
 import { useArticle } from '../../hooks/articles';
 
@@ -15,19 +12,8 @@ import {
   InterestingArticles,
 } from './styles';
 
-interface ArticleProps {
-  id: string;
-  title: string;
-  content: string;
-  lawyer_name: string;
-}
-
 const Main: React.FC = () => {
-  const { getArticlesFromAPI, handleNavigateToDetail, articles } = useArticle();
-
-  useEffect(() => {
-    getArticlesFromAPI();
-  }, []);
+  const { handleNavigateToDetail, articles } = useArticle();
 
   return (
     <Container>
@@ -92,23 +78,23 @@ const Main: React.FC = () => {
 
         {articles &&
           articles.map(article => (
-            <div key={article.article.id}>
+            <div key={article.id}>
               <span>
                 <TiDocumentText size={42} />
                 <button
-                  onClick={() => handleNavigateToDetail(article.article.id)}
+                  onClick={() => handleNavigateToDetail(article.id)}
                   type="button"
                 >
-                  <p>{article.article.title}</p>
+                  <p>{article.title}</p>
                 </button>
               </span>
               <div>
-                <p>{article.article.content}</p>
+                <p>{article.content}</p>
               </div>
 
               <button
                 type="button"
-                onClick={() => handleNavigateToDetail(article.article.id)}
+                onClick={() => handleNavigateToDetail(article.id)}
               >
                 Continuar Leitura
               </button>

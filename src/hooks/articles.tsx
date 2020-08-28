@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 
@@ -9,13 +15,8 @@ interface Article {
   lawyer_name: string;
 }
 
-interface ArticleState {
-  article: Article;
-}
-
 interface ArticleContextData {
-  articles: ArticleState[];
-  getArticlesFromAPI(): Promise<void>;
+  articles: Article[];
   handleNavigateToDetail(id: string): Promise<void>;
 }
 
@@ -23,14 +24,18 @@ const AuthContext = createContext<ArticleContextData>({} as ArticleContextData);
 
 // eslint-disable-next-line react/prop-types
 export const ArticleProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<ArticleState[]>([]);
+  const [data, setData] = useState([] as Array<Article>);
   const history = useHistory();
 
-  async function getArticlesFromAPI(): Promise<void> {
-    const response = await api.get('/articles/list');
+  useEffect(() => {
+    async function load(): Promise<void> {
+      const response = await api.get('/articles/list');
 
-    setData(response.data);
-  }
+      setData(response.data);
+    }
+
+    load();
+  }, []);
 
   const handleNavigateToDetail = useCallback(async (id: string) => {
     await api.get(`/articles/list/${id}`);
@@ -42,7 +47,6 @@ export const ArticleProvider: React.FC = ({ children }) => {
     <AuthContext.Provider
       value={{
         articles: data,
-        getArticlesFromAPI,
         handleNavigateToDetail,
       }}
     >
