@@ -14,7 +14,7 @@ interface IArticle {
   title: string;
   content: string;
   lawyer_name: string;
-  image: string;
+  phone_number: string;
 }
 
 const AdminDashboard: React.FC = () => {

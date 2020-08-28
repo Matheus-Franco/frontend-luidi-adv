@@ -13,6 +13,7 @@ interface Article {
   title: string;
   content: string;
   lawyer_name: string;
+  phone_number: string;
 }
 
 interface ArticleContextData {
@@ -37,11 +38,14 @@ export const ArticleProvider: React.FC = ({ children }) => {
     load();
   }, []);
 
-  const handleNavigateToDetail = useCallback(async (id: string) => {
-    await api.get(`/articles/list/${id}`);
+  const handleNavigateToDetail = useCallback(
+    async (id: string) => {
+      await api.get(`/articles/list/${id}`);
 
-    history.push(`/article/${id}`);
-  }, []);
+      history.push(`/article/${id}`);
+    },
+    [history],
+  );
 
   return (
     <AuthContext.Provider
