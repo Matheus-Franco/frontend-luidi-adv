@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { TiDocumentText } from 'react-icons/ti';
 import { FaWhatsapp, FaBalanceScale } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import api from '../../services/api';
+import logo from '../../assets/logoBlue.png';
 
 import { Container, Article } from './styles';
 
@@ -49,10 +50,9 @@ const ArticleDetails: React.FC = () => {
           </span>
         </div>
 
-        <span>
-          <p>WANDEKOEKEN </p>
-          <p>ADVOCACIA</p>
-        </span>
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </header>
 
       {article && (
@@ -67,7 +67,10 @@ const ArticleDetails: React.FC = () => {
           </div>
 
           <span>
-            <p>{article.lawyer_name}</p>
+            <div>
+              <p>Advogado Responsável:</p>
+              <p>{article.lawyer_name}</p>
+            </div>
 
             <a
               href={`https://api.whatsapp.com/send?phone=${article.phone_number}&text=Ol%C3%A1%2C%20Boa%20Tarde!`}
@@ -80,7 +83,8 @@ const ArticleDetails: React.FC = () => {
       )}
       <footer>
         <span>
-          <p>©2020 Wandekoeken ADV. </p>
+          <p>Wandekoeken Advogados</p>
+          <p>& Associados.</p>
           <p>Tel: +55 11 4118-2901</p>
         </span>
         <FaBalanceScale size={48} />

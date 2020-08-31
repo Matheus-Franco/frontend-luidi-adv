@@ -5,6 +5,8 @@ import { TiDocumentText } from 'react-icons/ti';
 
 import { useArticle } from '../../hooks/articles';
 
+import logo from '../../assets/logoBlue.png';
+
 import {
   Container,
   AboutCompany,
@@ -31,10 +33,9 @@ const Main: React.FC = () => {
           </span>
         </div>
 
-        <span>
-          <p>WANDEKOEKEN </p>
-          <p>ADVOCACIA</p>
-        </span>
+        <button type="button">
+          <img src={logo} alt="logo" />
+        </button>
       </header>
 
       <AboutCompany>
@@ -68,7 +69,12 @@ const Main: React.FC = () => {
           <h3>Área de Competências</h3>
         </span>
 
-        <div />
+        <span>
+          <div>Imobiliário</div>
+          <div>Empresarial</div>
+          <div>Tributário</div>
+          <div>Criminal</div>
+        </span>
       </CompetenceArea>
 
       <InterestingArticles>
@@ -104,7 +110,8 @@ const Main: React.FC = () => {
 
       <footer>
         <span>
-          <p>©2020 Wandekoeken ADV. </p>
+          <p>Wandekoeken Advogados</p>
+          <p>& Associados.</p>
           <p>Tel: +55 11 4118-2901</p>
         </span>
         <FaBalanceScale size={48} />
