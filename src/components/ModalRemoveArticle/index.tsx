@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import Modal from '../Modal';
 
@@ -28,6 +29,30 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
 }) => {
   const [articles, setArticles] = useState<IArticle[]>([]);
 
+  const notifySucess = useCallback((): void => {
+    toast.success('Artigo removido com sucesso.', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, []);
+
+  const notifyError = useCallback((): void => {
+    toast.error('Algo de errado aconteceu.', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, []);
+
   useEffect(() => {
     async function loadArticles(): Promise<void> {
       const response = await api.get('/articles/list');
@@ -38,7 +63,7 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
     }
 
     loadArticles();
-  }, [articles]);
+  }, []);
 
   const handleSubmit = useCallback(
     async (article_id: string) => {
@@ -46,11 +71,13 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
         await handleRemoveArticle(article_id);
 
         setIsOpen();
+
+        notifySucess();
       } catch (err) {
-        console.log('Error');
+        notifyError();
       }
     },
-    [setIsOpen, handleRemoveArticle],
+    [setIsOpen, handleRemoveArticle, notifyError, notifySucess],
   );
 
   return (

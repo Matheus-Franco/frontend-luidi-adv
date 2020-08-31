@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 import Modal from '../Modal';
 import Input from '../Input';
@@ -38,6 +39,30 @@ const ModalAddArticle: React.FC<IModalProps> = ({
 }) => {
   const formRef = useRef<FormHandles>(null);
 
+  const notifySucess = useCallback((): void => {
+    toast.success('Artigo adicionado com sucesso.', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, []);
+
+  const notifyError = useCallback((): void => {
+    toast.error('Algo de errado aconteceu.', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, []);
+
   const handleSubmit = useCallback(
     async (data: ICreateArticleData) => {
       try {
@@ -57,11 +82,13 @@ const ModalAddArticle: React.FC<IModalProps> = ({
         await handleAddArticle(data);
 
         setIsOpen();
+
+        notifySucess();
       } catch (err) {
-        console.log('Error');
+        notifyError();
       }
     },
-    [setIsOpen, handleAddArticle],
+    [setIsOpen, handleAddArticle, notifySucess, notifyError],
   );
 
   return (
