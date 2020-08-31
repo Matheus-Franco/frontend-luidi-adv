@@ -4,48 +4,37 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  height: 90vh;
+  flex-direction: row;
+  height: 85vh;
 
-  > div {
-    background: #393d3f;
-    width: 1200px;
-    height: 500px;
+  button {
+    background: #0f1126;
+    height: 80%;
+    width: 40%;
+    margin: 24px;
     border-radius: 15px;
+    border: none;
+    cursor: pointer;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
+    padding: 18px;
+    transition: 0.3s;
 
-    button {
+    p {
+      font-weight: 600;
+      font-size: 28px;
+      color: #fafafa;
+    }
+
+    &:hover {
       background: #fafafa;
-      height: 60%;
-      width: 30%;
-      margin: 24px;
-      border-radius: 15px;
-      border: none;
-      cursor: pointer;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px;
-      transition: 0.3s;
-
-      &:hover {
-        background: #6ecf56;
-        margin-top: 5px;
-
-        p {
-          color: #fafafa;
-        }
-      }
+      margin-top: 5px;
+      border: 2px solid #0f1126;
 
       p {
-        font-weight: 600;
-        font-size: 18px;
-        color: #434a52;
+        color: #0f1126;
       }
     }
   }

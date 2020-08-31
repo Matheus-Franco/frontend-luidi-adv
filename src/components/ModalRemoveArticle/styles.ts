@@ -11,7 +11,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 18px;
-    background: #393d3f;
+    background: #0f1126;
     border-radius: 10px;
 
     margin-bottom: 12px;

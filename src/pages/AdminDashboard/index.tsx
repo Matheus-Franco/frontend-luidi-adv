@@ -56,27 +56,25 @@ const AdminDashboard: React.FC = () => {
     <>
       <Header />
       <Container>
-        <div>
-          <ModalAddArticle
-            isOpen={modalOpen}
-            setIsOpen={toggleModal}
-            handleAddArticle={handleAddArticle}
-          />
+        <ModalAddArticle
+          isOpen={modalOpen}
+          setIsOpen={toggleModal}
+          handleAddArticle={handleAddArticle}
+        />
 
-          <ModalRemoveArticle
-            isOpen={removeModalOpen}
-            setIsOpen={toggleRemoveModal}
-            handleRemoveArticle={handleRemoveArticle}
-          />
+        <ModalRemoveArticle
+          isOpen={removeModalOpen}
+          setIsOpen={toggleRemoveModal}
+          handleRemoveArticle={handleRemoveArticle}
+        />
 
-          <button type="button" onClick={toggleRemoveModal}>
-            <p>DELETAR ARTIGO</p>
-          </button>
+        <button type="button" onClick={toggleRemoveModal}>
+          <p>DELETAR ARTIGO</p>
+        </button>
 
-          <button type="button" onClick={toggleModal}>
-            <p>ADICIONAR ARTIGO</p>
-          </button>
-        </div>
+        <button type="button" onClick={toggleModal}>
+          <p>ADICIONAR ARTIGO</p>
+        </button>
       </Container>
     </>
   );

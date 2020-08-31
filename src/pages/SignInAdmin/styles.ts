@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #4b4d4e;
+  background: #0f1126;
 
   h3 {
     color: #fafafa;
@@ -17,7 +17,7 @@ export const Container = styled.div`
 
   form {
     > div {
-      background: #393d3f;
+      background: #fafafa;
       height: 300px;
       width: 500px;
 

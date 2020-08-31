@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  background: #393d3f;
+  background: #0f1126;
   height: 100px;
   display: flex;
   align-items: center;
@@ -20,6 +20,7 @@ export const Container = styled.div`
 
     p {
       line-height: 16px;
+      font-size: 24px;
     }
 
     button {
@@ -31,7 +32,13 @@ export const Container = styled.div`
       align-items: center;
       justify-content: flex-end;
 
+      font-size: 24px;
+
       color: #fafafa;
+
+      svg {
+        margin-left: 8px;
+      }
 
       &:hover {
         color: ${shade(0.3, '#fafafa')};
