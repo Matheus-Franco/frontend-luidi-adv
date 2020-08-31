@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FiMenu } from 'react-icons/fi';
+import React, { useState, useEffect, useCallback } from 'react';
 import { TiDocumentText } from 'react-icons/ti';
-import { FaWhatsapp, FaBalanceScale } from 'react-icons/fa';
-import { useParams, Link } from 'react-router-dom';
+import { FaWhatsapp, FaBalanceScale, FaHome } from 'react-icons/fa';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import logo from '../../assets/logoBlue.png';
@@ -19,8 +18,13 @@ interface IArticle {
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const [article, setArticle] = useState<IArticle>({} as IArticle);
+
+  const handleNavigate = useCallback(() => {
+    history.push('/');
+  }, [history]);
 
   useEffect(() => {
     async function loadArticle(): Promise<void> {
@@ -38,15 +42,19 @@ const ArticleDetails: React.FC = () => {
     <Container>
       <header>
         <div>
-          <button type="button">
-            <FiMenu size={28} />
+          <button type="button" onClick={handleNavigate}>
+            <FaHome size={28} />
           </button>
 
           <span>
-            <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
-              <FaWhatsapp size={28} />
-              <p>WHATSAPP</p>
-            </a>
+            {article && (
+              <a
+                href={`https://api.whatsapp.com/send?phone=${article.phone_number}&text=Ol%C3%A1%2C%20Boa%20Tarde!`}
+              >
+                <FaWhatsapp size={28} />
+                <p>WHATSAPP</p>
+              </a>
+            )}
           </span>
         </div>
 

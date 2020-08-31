@@ -1,7 +1,13 @@
-import React from 'react';
-import { FiMenu } from 'react-icons/fi';
-import { FaWhatsapp, FaRegCommentDots, FaBalanceScale } from 'react-icons/fa';
+import React, { useCallback } from 'react';
+import {
+  FaWhatsapp,
+  FaRegCommentDots,
+  FaBalanceScale,
+  FaHome,
+} from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
+
+import { useHistory } from 'react-router-dom';
 
 import { useArticle } from '../../hooks/articles';
 
@@ -15,18 +21,24 @@ import {
 } from './styles';
 
 const Main: React.FC = () => {
+  const history = useHistory();
+
   const { handleNavigateToDetail, articles } = useArticle();
+
+  const handleNavigate = useCallback(() => {
+    history.push('/');
+  }, [history]);
 
   return (
     <Container>
       <header>
         <div>
-          <button type="button">
-            <FiMenu size={28} />
+          <button type="button" onClick={handleNavigate}>
+            <FaHome size={28} />
           </button>
 
           <span>
-            <a href="https://api.whatsapp.com/send?phone={LAWYER_NUMBER}&text=Ol%C3%A1%2C%20Boa%20Tarde!">
+            <a href="https://api.whatsapp.com/send?phone=5527997430836&text=Ol%C3%A1%2C%20Boa%20Tarde!">
               <FaWhatsapp size={28} />
               <p>WHATSAPP</p>
             </a>
