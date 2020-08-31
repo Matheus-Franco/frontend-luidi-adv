@@ -42,9 +42,13 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
 
   const handleSubmit = useCallback(
     async (article_id: string) => {
-      await handleRemoveArticle(article_id);
+      try {
+        await handleRemoveArticle(article_id);
 
-      setIsOpen();
+        setIsOpen();
+      } catch (err) {
+        console.log('Error');
+      }
     },
     [setIsOpen, handleRemoveArticle],
   );

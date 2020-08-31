@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 import Input from '../../components/Input';
 
@@ -21,12 +22,27 @@ const SignInAdmin: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: AuthFormData) => {
-      await signIn({
-        email: data.email,
-        password: data.password,
-      });
+      try {
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail obrigatório.')
+            .email('E-mail inválido.'),
+          password: Yup.string().required('Senha obrigatória.'),
+        });
 
-      history.push('/admin-dashboard');
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
+
+        history.push('/admin-dashboard');
+      } catch (err) {
+        console.log('Error');
+      }
     },
     [history, signIn],
   );

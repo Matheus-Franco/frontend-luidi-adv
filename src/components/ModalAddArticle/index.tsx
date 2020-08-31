@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 import Modal from '../Modal';
 import Input from '../Input';
@@ -39,9 +40,26 @@ const ModalAddArticle: React.FC<IModalProps> = ({
 
   const handleSubmit = useCallback(
     async (data: ICreateArticleData) => {
-      await handleAddArticle(data);
+      try {
+        const schema = Yup.object().shape({
+          title: Yup.string().required('Título obrigatório.'),
+          content: Yup.string().required('Conteúdo obrigatório'),
+          lawyer_name: Yup.string().required('Nome do advogado é obrigatório.'),
+          phone_number: Yup.string().required(
+            'Número para contato é obrigatório.',
+          ),
+        });
 
-      setIsOpen();
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        await handleAddArticle(data);
+
+        setIsOpen();
+      } catch (err) {
+        console.log('Error');
+      }
     },
     [setIsOpen, handleAddArticle],
   );
