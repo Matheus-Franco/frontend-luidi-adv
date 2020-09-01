@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-import Modal from '../Modal';
+import { useArticle } from '../../hooks/articles';
 
-import api from '../../services/api';
+import Modal from '../Modal';
 
 import { Container } from './styles';
 
@@ -12,11 +12,6 @@ interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
   handleRemoveArticle: (article_id: string) => void;
-}
-
-interface IArticle {
-  id: string;
-  title: string;
 }
 
 const ModalRemoveArticle: React.FC<IModalProps> = ({
@@ -27,7 +22,7 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
   // eslint-disable-next-line react/prop-types
   setIsOpen,
 }) => {
-  const [articles, setArticles] = useState<IArticle[]>([]);
+  const { articles } = useArticle();
 
   const notifySucess = useCallback((): void => {
     toast.success('Artigo removido com sucesso.', {
@@ -53,22 +48,10 @@ const ModalRemoveArticle: React.FC<IModalProps> = ({
     });
   }, []);
 
-  useEffect(() => {
-    async function loadArticles(): Promise<void> {
-      const response = await api.get('/articles/list');
-
-      const articlesList = response.data;
-
-      setArticles(articlesList);
-    }
-
-    loadArticles();
-  }, []);
-
   const handleSubmit = useCallback(
     async (article_id: string) => {
       try {
-        await handleRemoveArticle(article_id);
+        handleRemoveArticle(article_id);
 
         setIsOpen();
 

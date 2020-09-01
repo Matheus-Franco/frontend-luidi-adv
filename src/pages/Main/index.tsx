@@ -6,7 +6,6 @@ import {
   FaHome,
 } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
-
 import { useHistory } from 'react-router-dom';
 
 import { useArticle } from '../../hooks/articles';
