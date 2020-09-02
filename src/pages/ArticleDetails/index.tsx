@@ -42,9 +42,11 @@ const ArticleDetails: React.FC = () => {
     <Container>
       <header>
         <div>
-          <button type="button" onClick={handleNavigate}>
-            <FaHome size={28} />
-          </button>
+          <div>
+            <button type="button" onClick={handleNavigate}>
+              <FaHome size={28} />
+            </button>
+          </div>
 
           <span>
             {article && (

@@ -13,50 +13,63 @@ export const Container = styled.div`
     > div {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      width: 100%;
 
-      button {
-        height: 50px;
-        width: 50px;
+      div {
+        width: 190px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: transparent;
-        border: none;
 
-        svg {
-          color: #fafafa;
-          transition: 0.3s;
+        button {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: none;
+          width: 50%;
+          cursor: default;
 
-          &:hover {
-            color: ${shade(0.3, '#fafafa')};
+          svg {
+            color: #fafafa;
+            transition: 0.3s;
+            cursor: pointer;
+
+            &:hover {
+              color: ${shade(0.3, '#fafafa')};
+            }
           }
         }
       }
 
-      a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #6ecf56;
-        color: #fafafa;
-        padding: 24px;
-        border: none;
-        border-radius: 10px;
-
-        margin: 12px 54px;
-        height: 64px;
+      span {
         width: 300px;
-        transition: 0.3s;
 
-        &:hover {
-          background: ${shade(0.3, '#6ecf56')};
-        }
+        a {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #6ecf56;
+          color: #fafafa;
+          padding: 24px;
+          border: none;
+          border-radius: 10px;
+          width: 100%;
+          height: 64px;
 
-        p {
-          margin: 0 12px;
-          font-weight: 600;
+          transition: 0.3s;
+
+          &:hover {
+            background: ${shade(0.3, '#6ecf56')};
+          }
+
+          p {
+            margin: 0 12px;
+            font-weight: 600;
+          }
         }
       }
     }
@@ -67,9 +80,11 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       background: transparent;
+      width: 600px;
 
       img {
         height: 110px;
+        width: 100%;
       }
     }
   }

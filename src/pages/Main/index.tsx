@@ -32,9 +32,11 @@ const Main: React.FC = () => {
     <Container>
       <header>
         <div>
-          <button type="button" onClick={handleNavigate}>
-            <FaHome size={28} />
-          </button>
+          <div>
+            <button type="button" onClick={handleNavigate}>
+              <FaHome size={28} />
+            </button>
+          </div>
 
           <span>
             <a href="https://api.whatsapp.com/send?phone=5527997430836&text=Ol%C3%A1%2C%20Boa%20Tarde!">
@@ -76,15 +78,23 @@ const Main: React.FC = () => {
       </AboutCompany>
 
       <CompetenceArea>
-        <span>
+        <div>
           <h3>Área de Competências</h3>
-        </span>
+        </div>
 
         <span>
-          <div>Imobiliário</div>
-          <div>Empresarial</div>
-          <div>Tributário</div>
-          <div>Criminal</div>
+          <div>
+            <p>Imobiliário</p>
+          </div>
+          <div>
+            <p>Empresarial</p>
+          </div>
+          <div>
+            <p>Tributário</p>
+          </div>
+          <div>
+            <p>Criminal</p>
+          </div>
         </span>
       </CompetenceArea>
 
@@ -113,7 +123,7 @@ const Main: React.FC = () => {
                 type="button"
                 onClick={() => handleNavigateToDetail(article.id)}
               >
-                Continuar Leitura
+                <p>Continuar Leitura</p>
               </button>
             </div>
           ))}

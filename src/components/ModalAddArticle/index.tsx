@@ -79,7 +79,7 @@ const ModalAddArticle: React.FC<IModalProps> = ({
           abortEarly: false,
         });
 
-        await handleAddArticle(data);
+        handleAddArticle(data);
 
         setIsOpen();
 
