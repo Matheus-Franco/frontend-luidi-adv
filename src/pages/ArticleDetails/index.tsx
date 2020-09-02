@@ -95,7 +95,7 @@ const ArticleDetails: React.FC = () => {
         <span>
           <p>Wandekoeken Advogados</p>
           <p>& Associados.</p>
-          <p>Tel: +55 11 4118-2901</p>
+          <p>Tel: +55 27 99743-0836</p>
         </span>
         <FaBalanceScale size={48} />
         <span>
