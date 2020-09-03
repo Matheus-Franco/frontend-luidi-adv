@@ -24,6 +24,12 @@ export const Container = styled.div`
       padding: 34px 12px;
     }
 
+    @media (max-width: 550px) {
+      flex-direction: column;
+      height: 250px;
+      padding: 34px 12px;
+    }
+
     > div {
       display: flex;
       align-items: center;
@@ -115,6 +121,10 @@ export const Container = styled.div`
       width: 600px;
 
       @media (max-width: 450px) {
+        width: 100%;
+      }
+
+      @media (max-width: 550px) {
         width: 100%;
       }
 
@@ -218,6 +228,10 @@ export const CompetenceArea = styled.div`
     align-items: flex-start;
   }
 
+  @media (max-width: 550px) {
+    height: 400px;
+  }
+
   > div {
     width: 100%;
     height: 200px;
@@ -256,6 +270,11 @@ export const CompetenceArea = styled.div`
       flex-direction: column;
     }
 
+    @media (max-width: 550px) {
+      flex-direction: column;
+      height: 300%;
+    }
+
     div {
       height: 100%;
       width: 18%;
@@ -276,6 +295,12 @@ export const CompetenceArea = styled.div`
         height: 40%;
         margin: 12px 0;
         justify-content: center;
+      }
+
+      @media (max-width: 550px) {
+        margin: 12px 0;
+        height: 50%;
+        width: 70%;
       }
 
       p {
@@ -350,6 +375,12 @@ export const InterestingArticles = styled.div`
       padding: 16px;
     }
 
+    @media (max-width: 550px) {
+      height: 200px;
+      width: 80%;
+      padding: 16px;
+    }
+
     span {
       display: flex;
       align-items: center;
@@ -396,6 +427,10 @@ export const InterestingArticles = styled.div`
       text-align: center;
 
       @media (max-width: 450px) {
+        display: none;
+      }
+
+      @media (max-width: 550px) {
         display: none;
       }
 

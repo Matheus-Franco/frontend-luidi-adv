@@ -16,6 +16,12 @@ export const Container = styled.div`
       padding: 34px 12px;
     }
 
+    @media (max-width: 550px) {
+      flex-direction: column;
+      height: 250px;
+      padding: 34px 12px;
+    }
+
     > div {
       display: flex;
       align-items: center;
@@ -105,6 +111,10 @@ export const Container = styled.div`
         width: 100%;
       }
 
+      @media (max-width: 550px) {
+        width: 100%;
+      }
+
       img {
         height: 110px;
         width: 100%;
@@ -182,7 +192,6 @@ export const Article = styled.div`
       display: flex;
       align-items: center;
       margin-bottom: 24px;
-      text-align: center;
 
       @media (max-width: 450px) {
         flex-direction: column;
