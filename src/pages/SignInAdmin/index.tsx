@@ -11,8 +11,7 @@ import { useAuth } from '../../hooks/auth';
 import { Container } from './styles';
 
 interface AuthFormData {
-  email: string;
-  password: string;
+  key: string;
 }
 
 const SignInAdmin: React.FC = () => {
@@ -24,10 +23,7 @@ const SignInAdmin: React.FC = () => {
     async (data: AuthFormData) => {
       try {
         const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório.')
-            .email('E-mail inválido.'),
-          password: Yup.string().required('Senha obrigatória.'),
+          key: Yup.string().required('Chave de acesso é obrigatória.'),
         });
 
         await schema.validate(data, {
@@ -35,12 +31,12 @@ const SignInAdmin: React.FC = () => {
         });
 
         await signIn({
-          email: data.email,
-          password: data.password,
+          key: data.key,
         });
 
         history.push('/admin-dashboard');
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log('Error');
       }
     },
@@ -53,8 +49,7 @@ const SignInAdmin: React.FC = () => {
 
       <Form ref={formRef} onSubmit={handleSubmit}>
         <div>
-          <Input name="email" placeholder="E-mail" />
-          <Input name="password" type="password" placeholder="Senha" />
+          <Input name="key" type="password" placeholder="Senha" />
 
           <button type="submit">ENTRAR</button>
         </div>
