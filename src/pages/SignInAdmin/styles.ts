@@ -37,9 +37,7 @@ export const Container = styled.div`
         font-size: 16px;
         background: #c5c5c5;
 
-        & + div {
-          margin: 10px 0px;
-        }
+        margin: 10px 0px;
       }
     }
   }
