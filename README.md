@@ -55,8 +55,8 @@ This is a website where the administrator (lawyer) can post his articles. If som
 $ git clone https://github.com/Matheus-Franco/wandekoeken-adv.git
 
 # Go into the repository
-$
-cd wandekoeken-adv
+$ cd wandekoeken-adv
+
 # Install dependencies
 $ yarn install
 
